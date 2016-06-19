@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+  PeerJS Demo
+  2016 Daniel Tsadok
+-->
+<html>
+<head>
+<title>PeerJS Demo</title>
+
+<script src="vendor/peerjs/peer.min.js"></script>
+<script src="peer-support.js"></script>
+<script src="message-ui.js"></script>
+<script>
+
+//Get random number for peer ID
+var millis = new Date().getTime(); //# of ms since 1/1/70
+var myPeerId = parseInt(Math.random() * millis);
+
+var peerServer = new Peer(myPeerId, {host: 'localhost', port: 9000, path: '/'});
+
+window.onload = function() { initMessageUI(peerServer, myPeerId) };
+
+</script>
+</head>
+
+<body>
+
+<div>
+  <h2>Peers</h2>
+  <select id=others size=5 style="width: 20em">
+    <option></option>
+  </select>
+  <button id=refresh>Refresh</button>
+</div>
+<div>
+  <input id=message />
+  <button id=send>Send</button>
+</div>
+<div>
+  <h2>Messages</h2>
+  <textarea id=incoming rows=15></textarea>
+</div>
+
+</body>
+</html>
