@@ -2,6 +2,22 @@
 
 var SoundfontUrl = "vendor/soundfont/";
 
+var Song = [];
+
+var Notes = { DO: 52, RE: 54, MI: 56 };
+
+var loadMidi = function(instrument, callback) {
+  MIDI.loadPlugin({
+    soundfontUrl: SoundfontUrl,
+    instrument: instrument,
+
+    onsuccess: function() {
+      console.log("Ready to play");
+      if (callback) callback();
+    }
+  });
+}
+
 //play notes 0.5s apart
 var playSong = function(notes) {
   for (var i in notes) {
@@ -13,18 +29,15 @@ var playSong = function(notes) {
   }
 }
 
-var loadAndPlay = function(instrument, song) {
-  MIDI.loadPlugin({
-    soundfontUrl: SoundfontUrl,
-    instrument: instrument,
+var addNoteToSong = function(note) {
+  Song.push(note);
+}
 
-    onprogress: function(state, progress) {
-      console.log(state, progress);
-    },
+var clearSong = function() {
+  if (confirm("Are you sure?"))
+    Song = [];
+}
 
-    onsuccess: function() {
-      console.log("Ready to play");
-      if (song) playSong(song);
-    }
-  });
+var previewSong = function() {
+  playSong(Song);
 }

@@ -21,18 +21,28 @@
 <script src="vendor/js/util/dom_request_script.js"></script>
 
 <script src="midi-support.js"></script>
+<script src="midi-ui.js"></script>
 
 <script>
 
 window.onload = function () {
-  var song = [52, 54, 56]; //major scale
-
-  loadAndPlay("acoustic_grand_piano", song);
+  loadMidi("acoustic_grand_piano");
+  initMidiUI();
 }
 
 </script>
 </head>
 
 <body>
+<div id="keyboard">
+  <button id="do">Do</button>
+  <button id="re">Re</button>
+  <button id="mi">Mi</button>
+
+  <button id="clear">Clear</button>
+  <button id="preview">Preview</button>
+</div>
+<div id=song>
+</div>
 </body>
 </html>
