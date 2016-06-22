@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>PeerJS + MIDI.js Demo</title>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+<!-- polyfill -->
+<script src="vendor/inc/shim/Base64.js"></script>
+<script src="vendor/inc/shim/Base64binary.js"></script>
+<script src="vendor/inc/shim/WebAudioAPI.js"></script>
+<!-- midi.js package -->
+<script src="vendor/js/midi/audioDetect.js"></script>
+<script src="vendor/js/midi/gm.js"></script>
+<script src="vendor/js/midi/loader.js"></script>
+<script src="vendor/js/midi/plugin.audiotag.js"></script>
+<script src="vendor/js/midi/plugin.webaudio.js"></script>
+<script src="vendor/js/midi/plugin.webmidi.js"></script>
+<!-- utils -->
+<script src="vendor/js/util/dom_request_xhr.js"></script>
+<script src="vendor/js/util/dom_request_script.js"></script>
+
+<script src="vendor/peerjs/peer.min.js"></script>
+
+<script src="peer-support.js"></script>
+<script src="midi-support.js"></script>
+<script src="midipeer-support.js"></script>
+<script src="midi-ui.js"></script>
+<script src="midipeer-ui.js"></script>
+<script>
+
+var myPeerId = generatePeerId(4);
+
+var peerServer = new Peer(myPeerId, {host: 'localhost', port: 9000, path: '/'});
+
+window.onload = function () {
+  loadMidi("acoustic_grand_piano");
+
+  initMidiUI();
+  initMidiPeerUI(peerServer);
+}
+
+</script>
+</head>
+
+<body>
+<div id=me>Your ID: <span>N/A</span></div>
+<div>
+  <h2>Peers</h2>
+  <select id=others size=5 style="width: 20em">
+    <option></option>
+  </select>
+  <button id=refresh>Refresh</button>
+</div>
+<div id="keyboard">
+  <button id="do">Do</button>
+  <button id="re">Re</button>
+  <button id="mi">Mi</button>
+
+  <button id="clear">Clear</button>
+  <button id="preview">Preview</button>
+  <button id="send">Send</button>
+</div>
+<div id=song>
+</div>
+<hr />
+<div id=incoming>
+  <div></div>
+  <button id="play" disabled>Play Incoming</button>
+</div>
+</body>
+</html>
