@@ -18,7 +18,7 @@ var myPeerId = parseInt(Math.random() * millis);
 
 var peerServer = new Peer(myPeerId, {host: 'localhost', port: 9000, path: '/'});
 
-window.onload = function() { initMessageUI(peerServer, myPeerId) };
+window.onload = function() { initMessageUI(peerServer) };
 
 </script>
 </head>
