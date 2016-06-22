@@ -12,10 +12,8 @@
 <script src="message-ui.js"></script>
 <script>
 
-//Get random number for peer ID
-var millis = new Date().getTime(); //# of ms since 1/1/70
-var myPeerId = parseInt(Math.random() * millis);
-
+//Get random 4 digit number for peer ID
+var myPeerId = generatePeerId(4);
 var peerServer = new Peer(myPeerId, {host: 'localhost', port: 9000, path: '/'});
 
 window.onload = function() { initMessageUI(peerServer) };

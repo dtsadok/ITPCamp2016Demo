@@ -1,6 +1,15 @@
 // Supporting functions for PeerJS Demo
 // 2016 Daniel Tsadok
 
+//Get random n-digit number for peer ID
+var generatePeerId = function(digits) {
+  if (!digits) digits = 8;
+  var mod = Math.pow(10, digits);
+
+  var millis = new Date().getTime(); //# of ms since 1/1/70
+  return parseInt(Math.random() * millis) % mod;
+}
+
 var showPeers = function(peerServer, peerList) {
   //server must have --allow_discovery
   peerServer.listAllPeers(function(others) {
