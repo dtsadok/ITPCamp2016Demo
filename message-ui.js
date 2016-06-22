@@ -2,6 +2,8 @@
 // 2016 Daniel Tsadok
 
 var initMessageUI = function(peerServer, myPeerId) {
+  document.getElementById("me").firstElementChild.innerHTML = myPeerId;
+
   var peerList = document.getElementById('others');
   var refreshButton = document.getElementById('refresh');
   refreshButton.onclick = function() { showPeers(peerServer, myPeerId, peerList) };
